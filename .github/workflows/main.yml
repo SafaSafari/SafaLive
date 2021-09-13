@@ -6,7 +6,7 @@ on:
 #   - cron: "0 0,2,4,6,8,10,12,14,16,18,20,22 * * *"
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: checkout repo content
         uses: actions/checkout@v2 # checkout the repository content to github runner.
@@ -16,8 +16,6 @@ jobs:
           python-version: >3 #install the python needed
       - name: execute py script # run the run.py to get the latest data
         run: |
-          sudo apt-get -y install python3-pip
           pip install -U pytgcalls==3.0.0.dev19 git+https://github.com/pyrogram/pyrogram streamlink tgcrypto
-          cat /proc/cpuinfo
           openssl enc -AES-256-CFB -d -k ${{ secrets.secret }} -in user.session.enc -out user.session
           python live.py ${{ secrets.api_id }} ${{ secrets.api_hash }} ${{ secrets.channel }} ${{ secrets.stream }}
