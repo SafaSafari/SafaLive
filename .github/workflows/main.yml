@@ -18,4 +18,5 @@ jobs:
         run: |
           sudo apt-get -y install python3-pip
           pip install -U pytgcalls==3.0.0.dev19 git+https://github.com/pyrogram/pyrogram streamlink
+          openssl enc -AES-256-CFB -d -k ${{ secrets.secret }} -in user.session.enc -out user.session
           python live.py ${{ secrets.api_id }} ${{ secrets.api_hash }} ${{ secrets.channel }} ${{ secrets.stream }}
