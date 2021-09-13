@@ -17,6 +17,6 @@ jobs:
       - name: execute py script # run the run.py to get the latest data
         run: |
           sudo apt-get -y install python3-pip
-          pip install -U pytgcalls==3.0.0.dev19 git+https://github.com/pyrogram/pyrogram streamlink
+          pip install -U pytgcalls==3.0.0.dev19 git+https://github.com/pyrogram/pyrogram streamlink tgcrypto
           openssl enc -AES-256-CFB -d -k ${{ secrets.secret }} -in user.session.enc -out user.session
           python live.py ${{ secrets.api_id }} ${{ secrets.api_hash }} ${{ secrets.channel }} ${{ secrets.stream }}
