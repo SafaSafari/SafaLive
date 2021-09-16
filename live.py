@@ -9,7 +9,7 @@ async def main(client):
     group_call = pytgcalls.GroupCallFactory(client).get_group_call()
     await group_call.join(sys.argv[3])
     stream = sys.argv[4]
-    if not sys.argv[4].__contains__('m3u8') or not sys.argv[4].__contains__('mpd'):
+    if not stream.__contains__('m3u8') and not stream.__contains__('mpd'):
         stream = streamlink.streams(sys.argv[4])['720p'].url
     await group_call.start_video(stream)
 
